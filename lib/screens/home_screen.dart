@@ -11,15 +11,45 @@ class HomeScreen extends StatelessWidget {
         body: CustomScrollView(
       slivers: [
         SliverAppBar(
+          expandedHeight: 150,
           backgroundColor: Colors.transparent,
-          centerTitle: true,
-          title: Column(
-            children: [
-              Text(
-                "Welcome Back wigga boy",
-                style: TextStyle(color: Colors.grey[300]),
+          // centerTitle: true,
+          flexibleSpace: FlexibleSpaceBar(
+            titlePadding: EdgeInsets.zero,
+            centerTitle: true,
+            title: Container(
+              margin: const EdgeInsets.only(top: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(flex: 3, child: Container()),
+                  Column(
+                    children: [
+                      Text(
+                        "Welcome Back",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: Colors.grey[300],
+                          fontSize: 12,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Wigga Boy",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[100],
+                          fontSize: 22,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Flexible(flex: 1, child: Container())
+                ],
               ),
-            ],
+            ),
           ),
         ),
         SliverToBoxAdapter(
