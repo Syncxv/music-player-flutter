@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Palette.purpleMain,
         scaffoldBackgroundColor: Palette.purpleMain,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
