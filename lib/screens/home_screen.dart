@@ -10,9 +10,28 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         body: CustomScrollView(
       slivers: [
+        SliverAppBar(
+          backgroundColor: Colors.transparent,
+          centerTitle: true,
+          title: Column(
+            children: [
+              Text(
+                "Welcome Back wigga boy",
+                style: TextStyle(color: Colors.grey[300]),
+              ),
+            ],
+          ),
+        ),
         SliverToBoxAdapter(
           child: PlaylistsContainer(
-            playlists: [Playlist(name: "hi", id: 1, songs: [])],
+            playlists: [
+              Playlist(name: "hi", id: 1, songs: []),
+              Playlist(name: "hi", id: 1, songs: []),
+              Playlist(name: "hi", id: 1, songs: []),
+              Playlist(name: "hi", id: 1, songs: []),
+              Playlist(name: "hi", id: 1, songs: []),
+              Playlist(name: "hi", id: 1, songs: []),
+            ],
           ),
         )
       ],

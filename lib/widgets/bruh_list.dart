@@ -12,14 +12,16 @@ class PlaylistsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      color: Colors.red[200],
+      // color: Colors.red[200],
       child: ListView.builder(
           itemCount: playlists.length,
           scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           itemBuilder: (ctx, index) {
             return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               color: Colors.black,
-              width: 50,
+              width: 150,
             );
           }),
     );
