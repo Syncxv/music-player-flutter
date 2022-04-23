@@ -64,7 +64,9 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const HeaderThingy(title: "Playlists"),
                 PlaylistsContainer(
                   playlists: [
                     Playlist(
