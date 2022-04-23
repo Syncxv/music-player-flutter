@@ -19,7 +19,7 @@ class PlaylistsContainer extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           itemBuilder: (ctx, index) {
             return Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.only(right: 30),
               color: Colors.black,
               width: 150,
             );
