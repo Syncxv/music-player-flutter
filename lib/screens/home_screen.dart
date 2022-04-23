@@ -53,15 +53,30 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: PlaylistsContainer(
-            playlists: [
-              Playlist(name: "hi", id: 1, songs: []),
-              Playlist(name: "hi", id: 1, songs: []),
-              Playlist(name: "hi", id: 1, songs: []),
-              Playlist(name: "hi", id: 1, songs: []),
-              Playlist(name: "hi", id: 1, songs: []),
-              Playlist(name: "hi", id: 1, songs: []),
-            ],
+          child: Container(
+            height: 900,
+            padding: const EdgeInsets.only(top: 20),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+            child: Column(
+              children: [
+                PlaylistsContainer(
+                  playlists: [
+                    Playlist(name: "hi", id: 1, songs: []),
+                    Playlist(name: "hi", id: 1, songs: []),
+                    Playlist(name: "hi", id: 1, songs: []),
+                    Playlist(name: "hi", id: 1, songs: []),
+                    Playlist(name: "hi", id: 1, songs: []),
+                    Playlist(name: "hi", id: 1, songs: []),
+                  ],
+                ),
+              ],
+            ),
           ),
         )
       ],

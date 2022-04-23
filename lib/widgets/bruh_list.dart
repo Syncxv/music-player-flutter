@@ -10,7 +10,7 @@ class PlaylistsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 150,
       // color: Colors.red[200],
       child: ListView.builder(
@@ -19,8 +19,13 @@ class PlaylistsContainer extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           itemBuilder: (ctx, index) {
             return Container(
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                ),
+              ),
               margin: const EdgeInsets.only(right: 30),
-              color: Colors.black,
               width: 150,
             );
           }),
