@@ -8,7 +8,7 @@ class Playlist {
 
   Playlist({
     required this.id,
-    required this.image,
+    this.image,
     required this.name,
     required this.songs,
   });
