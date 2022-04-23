@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/models/models.dart';
+import 'package:music_player/widgets/glass_mophisim.dart';
 
 class PlaylistsContainer extends StatelessWidget {
   final List<Playlist> playlists;
@@ -11,12 +12,12 @@ class PlaylistsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 160,
       // color: Colors.red[200],
       child: ListView.builder(
           itemCount: playlists.length,
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           itemBuilder: (ctx, index) {
             return Container(
               decoration: BoxDecoration(
@@ -32,7 +33,67 @@ class PlaylistsContainer extends StatelessWidget {
                     : null,
               ),
               margin: const EdgeInsets.only(right: 30),
-              width: 150,
+              width: 160,
+              child: Stack(
+                children: [
+                  Positioned(
+                    bottom: 10.0,
+                    left: 10,
+                    child: GlassMorphsim(
+                      blur: 4,
+                      opacity: 0.25,
+                      color: Color.fromARGB(255, 26, 26, 26),
+                      child: SizedBox(
+                        height: 50,
+                        width: 140,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  playlists[index].name,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(right: 3),
+                                      child: Icon(
+                                        Icons.music_note,
+                                        color: Colors.grey[300],
+                                        size: 15,
+                                      ),
+                                    ),
+                                    Text(
+                                      "${playlists[index].songs.length} Tracks",
+                                      style: TextStyle(
+                                        color: Colors.grey[300],
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            const Icon(
+                              Icons.play_circle_fill,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           }),
     );
