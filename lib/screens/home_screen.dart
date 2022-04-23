@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/models/models.dart';
 import 'package:music_player/models/playlist.dart';
 import 'package:music_player/widgets/bruh_list.dart';
+import 'package:music_player/widgets/recently_played.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -81,10 +83,27 @@ class HomeScreen extends StatelessWidget {
                     Playlist(name: "hi", id: 1, songs: []),
                   ],
                 ),
+                const HeaderThingy(title: "Recently Played"),
+                RecentlyPlayedList(songs: [
+                  Song(
+                    album: "idk",
+                    artist: "heh",
+                    comment: "none",
+                    title: "hehehe",
+                    year: 1999,
+                  ),
+                  Song(
+                    album: "bruh moment",
+                    artist: "hidude",
+                    comment: "none",
+                    title: "a nice song",
+                    year: 1999,
+                  )
+                ]),
               ],
             ),
           ),
-        )
+        ),
       ],
     ));
   }
