@@ -19,11 +19,17 @@ class PlaylistsContainer extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           itemBuilder: (ctx, index) {
             return Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.black,
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(15),
                 ),
+                image: playlists[index].image != null
+                    ? DecorationImage(
+                        image: AssetImage(playlists[index].image as String),
+                        fit: BoxFit.fill,
+                      )
+                    : null,
               ),
               margin: const EdgeInsets.only(right: 30),
               width: 150,
