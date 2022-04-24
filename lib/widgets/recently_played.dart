@@ -15,6 +15,7 @@ class RecentlyPlayedList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       height: 500,
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: songs.length,
         itemBuilder: (ctx, index) => Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),

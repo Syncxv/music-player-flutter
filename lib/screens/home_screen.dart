@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/models/models.dart';
-import 'package:music_player/models/playlist.dart';
 import 'package:music_player/widgets/bruh_list.dart';
 import 'package:music_player/widgets/recently_played.dart';
 
@@ -56,7 +55,10 @@ class HomeScreen extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Container(
-            height: 900,
+            constraints: const BoxConstraints(
+              minHeight: 600,
+              maxHeight: double.infinity,
+            ),
             padding: const EdgeInsets.only(top: 20),
             decoration: const BoxDecoration(
               color: Colors.white,
