@@ -73,16 +73,16 @@ class HomeScreen extends StatelessWidget {
                 const HeaderThingy(title: "Playlists"),
                 PlaylistsContainer(
                   playlists: [
-                    Playlist(
-                        name: "hi",
-                        id: 1,
-                        image: "assets/images/hi.png",
-                        songs: []),
-                    Playlist(name: "hi", id: 1, songs: []),
-                    Playlist(name: "hi", id: 1, songs: []),
-                    Playlist(name: "hi", id: 1, songs: []),
-                    Playlist(name: "hi", id: 1, songs: []),
-                    Playlist(name: "hi", id: 1, songs: []),
+                    // Playlist(
+                    //     name: "hi",
+                    //     id: 1,
+                    //     image: "assets/images/hi.png",
+                    //     songs: []),
+                    // Playlist(name: "hi", id: 1, songs: []),
+                    // Playlist(name: "hi", id: 1, songs: []),
+                    // Playlist(name: "hi", id: 1, songs: []),
+                    // Playlist(name: "hi", id: 1, songs: []),
+                    // Playlist(name: "hi", id: 1, songs: []),
                   ],
                 ),
                 const HeaderThingy(title: "Recently Played"),

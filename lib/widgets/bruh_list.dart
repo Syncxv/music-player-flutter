@@ -14,93 +14,95 @@ class PlaylistsContainer extends StatelessWidget {
     return SizedBox(
       height: 160,
       // color: Colors.red[200],
-      child: ListView.builder(
-          itemCount: playlists.length,
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          itemBuilder: (ctx, index) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(15),
-                ),
-                image: playlists[index].image != null
-                    ? DecorationImage(
-                        image: AssetImage(playlists[index].image as String),
-                        fit: BoxFit.fill,
-                      )
-                    : null,
-              ),
-              margin: const EdgeInsets.only(right: 30),
-              width: 160,
-              child: Stack(
-                children: [
-                  Positioned(
-                    bottom: 10.0,
-                    left: 10,
-                    child: GlassMorphsim(
-                      blur: 4,
-                      opacity: 0.25,
-                      color: Color.fromARGB(255, 26, 26, 26),
-                      child: SizedBox(
-                        height: 50,
-                        width: 140,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+      child: playlists.isEmpty
+          ? const Center(child: Text("Create a playlist nobba"))
+          : ListView.builder(
+              itemCount: playlists.length,
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              itemBuilder: (ctx, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                    image: playlists[index].image != null
+                        ? DecorationImage(
+                            image: AssetImage(playlists[index].image as String),
+                            fit: BoxFit.fill,
+                          )
+                        : null,
+                  ),
+                  margin: const EdgeInsets.only(right: 30),
+                  width: 160,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        bottom: 10.0,
+                        left: 10,
+                        child: GlassMorphsim(
+                          blur: 4,
+                          opacity: 0.25,
+                          color: Color.fromARGB(255, 26, 26, 26),
+                          child: SizedBox(
+                            height: 50,
+                            width: 140,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 3),
-                                  child: Text(
-                                    playlists[index].name,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                Row(
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      margin: EdgeInsets.only(right: 3),
-                                      child: Icon(
-                                        Icons.music_note,
-                                        color: Colors.grey[300],
-                                        size: 15,
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 3),
+                                      child: Text(
+                                        playlists[index].name,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      "${playlists[index].songs.length} Tracks",
-                                      style: TextStyle(
-                                        color: Colors.grey[300],
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 3),
+                                          child: Icon(
+                                            Icons.music_note,
+                                            color: Colors.grey[300],
+                                            size: 15,
+                                          ),
+                                        ),
+                                        Text(
+                                          "${playlists[index].songs.length} Tracks",
+                                          style: TextStyle(
+                                            color: Colors.grey[300],
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        )
+                                      ],
                                     )
                                   ],
-                                )
+                                ),
+                                const Icon(
+                                  Icons.play_circle_fill,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
                               ],
                             ),
-                            const Icon(
-                              Icons.play_circle_fill,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            );
-          }),
+                );
+              }),
     );
   }
 }
