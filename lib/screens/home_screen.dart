@@ -15,6 +15,23 @@ class HomeScreen extends StatelessWidget {
           expandedHeight: 150,
           backgroundColor: Colors.transparent,
           // centerTitle: true,
+          actions: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width - 1,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        print("hi");
+                      },
+                      icon: const Icon(Icons.menu_sharp)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+                ],
+              ),
+            )
+          ],
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: EdgeInsets.zero,
             centerTitle: true,
