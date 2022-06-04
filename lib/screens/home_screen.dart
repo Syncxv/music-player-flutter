@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_player/models/models.dart';
 import 'package:music_player/widgets/bruh_list.dart';
 import 'package:music_player/widgets/recently_played.dart';
+import 'package:music_player/widgets/top_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,23 +16,7 @@ class HomeScreen extends StatelessWidget {
           expandedHeight: 150,
           backgroundColor: Colors.transparent,
           // centerTitle: true,
-          actions: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 1,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        print("hi");
-                      },
-                      icon: const Icon(Icons.menu_sharp)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-                ],
-              ),
-            )
-          ],
+          actions: [TopBar()],
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: EdgeInsets.zero,
             centerTitle: true,
