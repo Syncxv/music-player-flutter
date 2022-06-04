@@ -22,26 +22,31 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  Widget getCurrentScreen() =>
+      _screens.isNotEmpty ? _screens[_selectedIndex] : const Text("loading");
+
   @override
   Widget build(BuildContext context) {
     print(_isOpened);
-    return Stack(children: [
-      const NavBar(),
-      Transform.translate(
-        offset: const Offset(220.0, 0),
-        child: Transform.scale(
-          scale: 0.95,
-          child: Transform.rotate(
-            angle: -0.15,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(18.0),
-              child: _screens.isNotEmpty
-                  ? _screens[_selectedIndex]
-                  : const Text("loading"),
-            ),
-          ),
-        ),
-      ),
-    ]);
+    return _isOpened
+        ? Stack(
+            children: [
+              const NavBar(),
+              Transform.translate(
+                offset: const Offset(220.0, 0),
+                child: Transform.scale(
+                  scale: 0.95,
+                  child: Transform.rotate(
+                    angle: -0.15,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(18.0),
+                      child: getCurrentScreen(),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
+        : getCurrentScreen();
   }
 }
