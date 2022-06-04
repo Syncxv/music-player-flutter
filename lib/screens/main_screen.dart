@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/palette/palette.dart';
 import 'package:music_player/screens/home_screen.dart';
+import 'package:music_player/widgets/nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -10,8 +11,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> _screens = [];
-  List<Text> _text = const [Text("Home"), Text("Playlists")];
+  final List<Widget> _screens = [const HomeScreen()];
+  final List<Text> _text = const [Text("Home"), Text("Playlists")];
   int _selectedIndex = 0;
   bool _isOpened = false;
 
@@ -24,11 +25,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     print(_isOpened);
-    return Container(
-      decoration: BoxDecoration(
-        color: Palette.purpleBg,
-      ),
-      child: Transform.translate(
+    return Stack(children: [
+      const NavBar(),
+      Transform.translate(
         offset: const Offset(220.0, 0),
         child: Transform.scale(
           scale: 0.95,
@@ -36,11 +35,13 @@ class _MainScreenState extends State<MainScreen> {
             angle: -0.15,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(18.0),
-              child: const HomeScreen(),
+              child: _screens.isNotEmpty
+                  ? _screens[_selectedIndex]
+                  : const Text("loading"),
             ),
           ),
         ),
       ),
-    );
+    ]);
   }
 }
