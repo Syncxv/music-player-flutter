@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
-  const TopBar({Key? key}) : super(key: key);
+  final Function onClick;
+  const TopBar({Key? key, required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +13,7 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-              onPressed: () {
-                print("hi");
-              },
-              icon: const Icon(Icons.menu_sharp)),
+              onPressed: () => onClick(), icon: const Icon(Icons.menu_sharp)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.search))
         ],
       ),

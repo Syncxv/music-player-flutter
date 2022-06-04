@@ -5,7 +5,8 @@ import 'package:music_player/widgets/recently_played.dart';
 import 'package:music_player/widgets/top_bar.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final Function onClick;
+  const HomeScreen({Key? key, required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,11 @@ class HomeScreen extends StatelessWidget {
           expandedHeight: 150,
           backgroundColor: Colors.transparent,
           // centerTitle: true,
-          actions: [TopBar()],
+          actions: [
+            TopBar(
+              onClick: onClick,
+            )
+          ],
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: EdgeInsets.zero,
             centerTitle: true,

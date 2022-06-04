@@ -11,10 +11,16 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<Widget> _screens = [const HomeScreen()];
+  final List<Widget> _screens = [];
   final List<Text> _text = const [Text("Home"), Text("Playlists")];
   int _selectedIndex = 0;
   bool _isOpened = false;
+
+  @override
+  void initState() {
+    _screens.add(HomeScreen(onClick: onClick));
+    super.initState();
+  }
 
   void onClick() {
     setState(() {
