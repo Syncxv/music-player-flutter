@@ -89,25 +89,3 @@ class _MainScreenState extends State<MainScreen>
     );
   }
 }
-
-class RotateScale extends StatelessWidget {
-  final Widget child;
-  const RotateScale({Key? key, required this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(220.0, 0),
-      child: Transform.scale(
-        scale: 0.95,
-        child: Transform.rotate(
-          angle: -0.15,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(18.0),
-            child: child,
-          ),
-        ),
-      ),
-    );
-  }
-}
