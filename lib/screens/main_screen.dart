@@ -63,6 +63,11 @@ class _MainScreenState extends State<MainScreen>
     }
   }
 
+  void setScreen(int index) {
+    if (index > _screens.length) return;
+    setState(() => _selectedIndex = index);
+  }
+
   Widget getCurrentScreen() =>
       _screens.isNotEmpty ? _screens[_selectedIndex] : const Text("loading");
 
