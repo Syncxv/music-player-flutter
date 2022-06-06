@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_player/palette/palette.dart';
-import 'package:music_player/screens/home_screen.dart';
+import 'package:music_player/screens/screens.dart';
 import 'package:music_player/widgets/nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -25,6 +24,7 @@ class _MainScreenState extends State<MainScreen>
   @override
   void initState() {
     _screens.add(HomeScreen(onClick: onClick));
+    _screens.add(TestWdiget(onClick: onClick));
     _controllerA = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
@@ -64,8 +64,10 @@ class _MainScreenState extends State<MainScreen>
   }
 
   void setScreen(int index) {
+    print("$index ${_screens.length}");
     if (index > _screens.length) return;
     setState(() => _selectedIndex = index);
+    onClick();
   }
 
   Widget getCurrentScreen() =>
@@ -76,7 +78,7 @@ class _MainScreenState extends State<MainScreen>
     print(_isOpened);
     return Stack(
       children: [
-        const NavBar(),
+        NavBar(setScreen: setScreen),
         Transform.translate(
           offset: Offset(offset, 0),
           child: Transform.scale(

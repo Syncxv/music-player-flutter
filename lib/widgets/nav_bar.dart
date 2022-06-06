@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:music_player/palette/palette.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({Key? key}) : super(key: key);
+  final Function(int) setScreen;
+  const NavBar({Key? key, required this.setScreen}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,19 @@ class NavBar extends StatelessWidget {
                 ),
               ),
             ),
-            const NavItem(icon: Icons.home, text: "Home"),
+            NavItem(
+              icon: Icons.home,
+              text: "Home",
+              onClick: () => setScreen(0),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            NavItem(
+              icon: Icons.add_road,
+              text: "Test",
+              onClick: () => setScreen(1),
+            ),
           ],
         ),
       ),
@@ -59,28 +72,33 @@ class NavBar extends StatelessWidget {
 class NavItem extends StatelessWidget {
   final IconData icon;
   final String text;
+  final Function onClick;
   const NavItem({
     Key? key,
     required this.icon,
     required this.text,
+    required this.onClick,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          color: Colors.white,
-        ),
-        const SizedBox(width: 10),
-        Text(
-          text,
-          style: const TextStyle(
+    return GestureDetector(
+      onTap: () => onClick(),
+      child: Row(
+        children: [
+          Icon(
+            icon,
             color: Colors.white,
           ),
-        )
-      ],
+          const SizedBox(width: 10),
+          Text(
+            text,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
