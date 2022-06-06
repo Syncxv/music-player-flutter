@@ -78,7 +78,7 @@ class _MainScreenState extends State<MainScreen>
     print(_isOpened);
     return Stack(
       children: [
-        NavBar(setScreen: setScreen),
+        NavBar(setScreen: setScreen, index: _selectedIndex),
         Transform.translate(
           offset: Offset(offset, 0),
           child: Transform.scale(

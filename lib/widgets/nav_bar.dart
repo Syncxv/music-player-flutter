@@ -3,7 +3,12 @@ import 'package:music_player/palette/palette.dart';
 
 class NavBar extends StatelessWidget {
   final Function(int) setScreen;
-  const NavBar({Key? key, required this.setScreen}) : super(key: key);
+  final int index;
+  const NavBar({
+    Key? key,
+    required this.setScreen,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +58,16 @@ class NavBar extends StatelessWidget {
               icon: Icons.home,
               text: "Home",
               onClick: () => setScreen(0),
+              selected: index == 0,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             NavItem(
               icon: Icons.add_road,
               text: "Test",
               onClick: () => setScreen(1),
+              selected: index == 1,
             ),
           ],
         ),
@@ -73,11 +80,13 @@ class NavItem extends StatelessWidget {
   final IconData icon;
   final String text;
   final Function onClick;
+  final bool selected;
   const NavItem({
     Key? key,
     required this.icon,
     required this.text,
     required this.onClick,
+    required this.selected,
   }) : super(key: key);
 
   @override
@@ -86,9 +95,24 @@ class NavItem extends StatelessWidget {
       onTap: () => onClick(),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: Colors.white,
+          Container(
+            decoration: selected
+                ? BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromARGB(255, 255, 255, 255)
+                            .withAlpha(60),
+                        blurRadius: 20.0,
+                        spreadRadius: 1.5,
+                      ),
+                    ],
+                  )
+                : const BoxDecoration(),
+            child: Icon(
+              icon,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(width: 10),
           Text(
