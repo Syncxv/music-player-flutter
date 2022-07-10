@@ -74,11 +74,19 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           animation: _controllerA,
           builder: (BuildContext context, _) {
             return Transform.translate(
-              offset: Offset(220.0 * _controllerA.value, 0),
+              offset: Offset(
+                  220.0 *
+                      _controllerA
+                          .drive(CurveTween(curve: Curves.easeInOut))
+                          .value,
+                  0),
               child: Transform.scale(
                 scale: scale,
                 child: Transform.rotate(
-                  angle: rotation,
+                  angle: -0.15 *
+                      _controllerA
+                          .drive(CurveTween(curve: Curves.easeInOut))
+                          .value,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18.0),
                     child: getCurrentScreen(),
