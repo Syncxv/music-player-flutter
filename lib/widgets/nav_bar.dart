@@ -103,6 +103,15 @@ class NavBar extends StatelessWidget {
                   onClick: () => setScreen(1),
                   selected: index == 1,
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                NavItem(
+                  icon: Icons.playlist_add,
+                  text: "Playlists",
+                  onClick: () => setScreen(2),
+                  selected: index == 2,
+                ),
               ],
             ),
           ),
