@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/screens/screens.dart';
+import 'package:music_player/util/clampOpposite.dart';
 import 'package:music_player/widgets/nav_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     );
 
     _controllerA.addListener(() {
-      _controllerA.value;
+      print(_controllerA.value);
     });
     super.initState();
   }
@@ -81,7 +82,12 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                           .value,
                   0),
               child: Transform.scale(
-                scale: scale,
+                scale: weirdClamp(
+                    _controllerA
+                        .drive(CurveTween(curve: Curves.easeInOut))
+                        .value,
+                    1,
+                    0.9),
                 child: Transform.rotate(
                   angle: -0.15 *
                       _controllerA
