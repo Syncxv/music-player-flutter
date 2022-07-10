@@ -18,8 +18,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   double scale = 1;
 
   //controllers
-  AnimationController? _controllerA;
-  AnimationController? _controllerB;
+  late AnimationController _controllerA;
   var mainAnimation;
   var scaleAnimation;
 
@@ -32,45 +31,15 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
-    _controllerB = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _controllerB!.addListener(() {
-      setState(() {
-        scale = scaleAnimation.value?.toDouble();
-      });
-    });
-    _controllerA!.addListener(() {
-      print(mainAnimation!.value);
-      setState(() {
-        rotation = -0.15 * mainAnimation.value;
-        offset = 220.0 * mainAnimation.value;
-      });
-    });
-    mainAnimation = Tween(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _controllerA!,
-      reverseCurve: Curves.easeIn,
-      curve: Curves.easeOut,
-    ));
 
-    scaleAnimation = Tween(
-      begin: 1,
-      end: 0.90,
-    ).animate(CurvedAnimation(
-      parent: _controllerB!,
-      reverseCurve: Curves.easeIn,
-      curve: Curves.easeOut,
-    ));
+    _controllerA.addListener(() {
+      _controllerA.value;
+    });
     super.initState();
   }
 
   @override
   void dispose() {
-    _controllerA?.dispose();
     super.dispose();
   }
 
@@ -78,15 +47,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     setState(() {
       _isOpened = !_isOpened;
     });
-    if (_controllerA!.isCompleted) {
-      _controllerA!.reverse();
+    if (_controllerA.isCompleted) {
+      _controllerA.reverse();
     } else {
-      _controllerA!.forward(from: 0.0);
-    }
-    if (_controllerB!.isCompleted) {
-      _controllerB!.reverse();
-    } else {
-      _controllerB!.forward(from: 1);
+      _controllerA.forward(from: 0.0);
     }
   }
 
@@ -106,18 +70,23 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     return Stack(
       children: [
         NavBar(setScreen: setScreen, index: _selectedIndex),
-        Transform.translate(
-          offset: Offset(offset, 0),
-          child: Transform.scale(
-            scale: scale,
-            child: Transform.rotate(
-              angle: rotation,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(18.0),
-                child: getCurrentScreen(),
+        AnimatedBuilder(
+          animation: _controllerA,
+          builder: (BuildContext context, _) {
+            return Transform.translate(
+              offset: Offset(220.0 * _controllerA.value, 0),
+              child: Transform.scale(
+                scale: scale,
+                child: Transform.rotate(
+                  angle: rotation,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(18.0),
+                    child: getCurrentScreen(),
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         )
       ],
     );
