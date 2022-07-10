@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   void initState() {
     _screens.add(HomeScreen(onClick: onClick));
     _screens.add(TestWdiget(onClick: onClick));
-    _screens.add(PlaylistScreen(onClick: onClick));
+    _screens.add(LibraryScreen(onClick: onClick));
     _controllerA = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
