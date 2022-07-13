@@ -9,23 +9,29 @@ class LibraryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenLayout(
         onClick: onClick,
-        child: DefaultTabController(
-          length: 2,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 padding: const EdgeInsets.only(bottom: 10.0),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(
-                      width: 2.5,
-                      color: Colors.grey[300]!,
-                      style: BorderStyle.solid,
-                    ),
+                      bottom: BorderSide(
+                    width: 2.5,
+                    color: Color.fromARGB(255, 238, 28, 53),
+                    style: BorderStyle.solid,
+                  )),
+                ),
+                child: const Text(
+                  "Playlists",
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                child: Text("Playlists"),
               )
             ],
           ),

@@ -25,9 +25,7 @@ class ScreenLayout extends StatelessWidget {
             ],
           ),
           SliverToBoxAdapter(
-            child: Center(
-              child: child,
-            ),
+            child: child,
           )
         ],
       ),
