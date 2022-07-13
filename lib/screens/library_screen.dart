@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/util/measured_size.dart';
 import 'package:music_player/widgets/screen_layout.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -50,11 +51,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 }
 
-class Taby extends StatelessWidget {
+class Taby extends StatefulWidget {
   final String name;
   final int index;
   final int selectedIndex;
   final Function(int) onClick;
+
   const Taby({
     Key? key,
     required this.name,
@@ -64,31 +66,57 @@ class Taby extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<Taby> createState() => _TabyState();
+}
+
+class _TabyState extends State<Taby> {
+  Size size = const Size(30, 0);
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onClick(index);
+        widget.onClick(widget.index);
       },
       child: Container(
         padding: const EdgeInsets.only(bottom: 10.0),
-        decoration: index == selectedIndex
-            ? const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 2.5,
-                    color: Color.fromARGB(255, 238, 28, 53),
-                    style: BorderStyle.solid,
-                  ),
+        // decoration: index == selectedIndex
+        //     ? const BoxDecoration(
+        //         border: Border(
+        //           bottom: BorderSide(
+        //             width: 2.5,
+        //             color: Color.fromARGB(255, 238, 28, 53),
+        //             style: BorderStyle.solid,
+        //           ),
+        //         ),
+        //       )
+        //     : const BoxDecoration(),
+        child: Column(
+          children: [
+            MeasureSize(
+              onChange: (_size) {
+                size = _size;
+              },
+              child: Text(
+                widget.name,
+                style: const TextStyle(
+                  fontSize: 17,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-              )
-            : const BoxDecoration(),
-        child: Text(
-          name,
-          style: const TextStyle(
-            fontSize: 17,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            widget.index == widget.selectedIndex
+                ? Container(
+                    width: size.width,
+                    height: 2,
+                    color: const Color.fromARGB(255, 255, 37, 21),
+                  )
+                : Container(),
+          ],
         ),
       ),
     );
