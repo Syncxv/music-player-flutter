@@ -8,10 +8,27 @@ class LibraryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenLayout(
-      onClick: onClick,
-      child: const Center(
-        child: Text("hey"),
-      ),
-    );
+        onClick: onClick,
+        child: DefaultTabController(
+          length: 2,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 2.5,
+                      color: Colors.grey[300]!,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                ),
+                child: Text("Playlists"),
+              )
+            ],
+          ),
+        ));
   }
 }

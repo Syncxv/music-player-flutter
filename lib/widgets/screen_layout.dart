@@ -16,7 +16,6 @@ class ScreenLayout extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 150,
             backgroundColor: Colors.transparent,
             // centerTitle: true,
             actions: [
