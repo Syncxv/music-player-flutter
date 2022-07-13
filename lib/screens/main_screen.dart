@@ -76,22 +76,30 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           builder: (BuildContext context, _) {
             return Transform.translate(
               offset: Offset(
-                  220.0 *
-                      _controllerA
-                          .drive(CurveTween(curve: Curves.easeInOut))
-                          .value,
-                  0),
+                220.0 *
+                    _controllerA
+                        .drive(
+                          CurveTween(curve: Curves.easeInOut),
+                        )
+                        .value,
+                0,
+              ),
               child: Transform.scale(
                 scale: weirdClamp(
-                    _controllerA
-                        .drive(CurveTween(curve: Curves.easeInOut))
-                        .value,
-                    1,
-                    0.9),
+                  _controllerA
+                      .drive(
+                        CurveTween(curve: Curves.easeInOut),
+                      )
+                      .value,
+                  1,
+                  0.9,
+                ),
                 child: Transform.rotate(
                   angle: -0.15 *
                       _controllerA
-                          .drive(CurveTween(curve: Curves.easeInOut))
+                          .drive(
+                            CurveTween(curve: Curves.easeInOut),
+                          )
                           .value,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18.0),
