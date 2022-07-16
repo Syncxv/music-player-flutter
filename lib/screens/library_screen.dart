@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:music_player/util/measured_size.dart';
 import 'package:music_player/widgets/screen_layout.dart';
 
 class LibraryScreen extends StatefulWidget {
   final Function onClick;
 
-  LibraryScreen({Key? key, required this.onClick}) : super(key: key);
+  const LibraryScreen({Key? key, required this.onClick}) : super(key: key);
 
   @override
   State<LibraryScreen> createState() => _LibraryScreenState();
@@ -80,43 +79,24 @@ class _TabyState extends State<Taby> {
       },
       child: Container(
         padding: const EdgeInsets.only(bottom: 10.0),
-        // decoration: index == selectedIndex
-        //     ? const BoxDecoration(
-        //         border: Border(
-        //           bottom: BorderSide(
-        //             width: 2.5,
-        //             color: Color.fromARGB(255, 238, 28, 53),
-        //             style: BorderStyle.solid,
-        //           ),
-        //         ),
-        //       )
-        //     : const BoxDecoration(),
-        child: Column(
-          children: [
-            MeasureSize(
-              onChange: (_size) {
-                size = _size;
-              },
-              child: Text(
-                widget.name,
-                style: const TextStyle(
-                  fontSize: 17,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+        decoration: widget.index == widget.selectedIndex
+            ? const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 2.5,
+                    color: Color.fromARGB(255, 238, 28, 53),
+                    style: BorderStyle.solid,
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            widget.index == widget.selectedIndex
-                ? Container(
-                    width: size.width,
-                    height: 2,
-                    color: const Color.fromARGB(255, 255, 37, 21),
-                  )
-                : Container(),
-          ],
+              )
+            : const BoxDecoration(),
+        child: Text(
+          widget.name,
+          style: const TextStyle(
+            fontSize: 17,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
