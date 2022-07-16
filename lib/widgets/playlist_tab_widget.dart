@@ -13,10 +13,19 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
         PlaylistWidget(
           boxThingy: Container(
             color: Palette.purpleBg,
+            height: 55,
+            width: 55,
+            child: const Center(
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 25,
+              ),
+            ),
           ),
           playlist: Playlist(
             id: 12,
-            name: "hi",
+            name: "Create Playlist",
             songs: [],
           ),
         )
@@ -48,7 +57,14 @@ class PlaylistWidget extends StatelessWidget {
           const SizedBox(
             width: LibraryScreenConstnats.playlistPadding,
           ),
-          Text(playlist.name)
+          Text(
+            playlist.name,
+            style: TextStyle(
+              color: Palette.textColorWhite,
+              fontWeight: FontWeight.w500,
+              fontSize: 17,
+            ),
+          )
         ],
       ),
     );
