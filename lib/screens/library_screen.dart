@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/constants/index.dart';
+import 'package:music_player/widgets/playlist_tab_widget.dart';
 import 'package:music_player/widgets/screen_layout.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -12,6 +14,10 @@ class LibraryScreen extends StatefulWidget {
 
 class _LibraryScreenState extends State<LibraryScreen> {
   int _selectedIndex = 0;
+  List<Widget> screens = [
+    const PlaylistTabBodyIDkMan(),
+    Container() //TODO: do the aritsts section wigga
+  ];
 
   _onClick(int index) {
     setState(() {
@@ -23,34 +29,41 @@ class _LibraryScreenState extends State<LibraryScreen> {
   Widget build(BuildContext context) {
     return ScreenLayout(
       onClick: widget.onClick,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Taby(
-              name: "Playlist",
-              index: 0,
-              selectedIndex: _selectedIndex,
-              onClick: _onClick,
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: constants.libraryConstnats.padding,
             ),
-            const SizedBox(
-              width: 20,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Taby(
+                  name: "Playlist",
+                  index: 0,
+                  selectedIndex: _selectedIndex,
+                  onClick: _onClick,
+                ),
+                SizedBox(
+                  width: constants.libraryConstnats.padding,
+                ),
+                Taby(
+                  name: "Artists",
+                  index: 1,
+                  selectedIndex: _selectedIndex,
+                  onClick: _onClick,
+                ),
+              ],
             ),
-            Taby(
-              name: "Artists",
-              index: 1,
-              selectedIndex: _selectedIndex,
-              onClick: _onClick,
-            ),
-          ],
-        ),
+          ),
+          screens[_selectedIndex],
+        ],
       ),
     );
   }
 }
 
-class Taby extends StatefulWidget {
+class Taby extends StatelessWidget {
   final String name;
   final int index;
   final int selectedIndex;
@@ -63,23 +76,17 @@ class Taby extends StatefulWidget {
     required this.selectedIndex,
     required this.onClick,
   }) : super(key: key);
-
-  @override
-  State<Taby> createState() => _TabyState();
-}
-
-class _TabyState extends State<Taby> {
-  Size size = const Size(30, 0);
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.onClick(widget.index);
+        onClick(index);
       },
       child: Container(
-        padding: const EdgeInsets.only(bottom: 10.0),
-        decoration: widget.index == widget.selectedIndex
+        padding: EdgeInsets.only(
+          bottom: constants.libraryConstnats.tabBorderPadding,
+        ),
+        decoration: index == selectedIndex
             ? const BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
@@ -91,7 +98,7 @@ class _TabyState extends State<Taby> {
               )
             : const BoxDecoration(),
         child: Text(
-          widget.name,
+          name,
           style: const TextStyle(
             fontSize: 17,
             color: Colors.white,
