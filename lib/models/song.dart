@@ -42,12 +42,12 @@ class Song {
     };
   }
 
-  static String encode(List<Song> todos) => json.encode(
-        todos.map<Map<String, dynamic>>((todo) => Song.toMap(todo)).toList(),
+  static String encode(List<Song> songs) => json.encode(
+        songs.map<Map<String, dynamic>>((todo) => Song.toMap(todo)).toList(),
       );
 
-  static List<Song> decode(String todos) =>
-      (json.decode(todos) as List<dynamic>)
+  static List<Song> decode(String songs) =>
+      (json.decode(songs) as List<dynamic>)
           .map<Song>((item) => Song.fromJson(item))
           .toList();
 
