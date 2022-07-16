@@ -32,8 +32,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: constants.libraryConstnats.padding,
+            padding: const EdgeInsets.symmetric(
+              horizontal: LibraryScreenConstnats.padding,
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,8 +44,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   selectedIndex: _selectedIndex,
                   onClick: _onClick,
                 ),
-                SizedBox(
-                  width: constants.libraryConstnats.padding,
+                const SizedBox(
+                  width: LibraryScreenConstnats.padding,
                 ),
                 Taby(
                   name: "Artists",
@@ -83,8 +83,8 @@ class Taby extends StatelessWidget {
         onClick(index);
       },
       child: Container(
-        padding: EdgeInsets.only(
-          bottom: constants.libraryConstnats.tabBorderPadding,
+        padding: const EdgeInsets.only(
+          bottom: LibraryScreenConstnats.tabBorderPadding,
         ),
         decoration: index == selectedIndex
             ? const BoxDecoration(

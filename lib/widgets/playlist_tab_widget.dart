@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/constants/index.dart';
 import 'package:music_player/models/models.dart';
+import 'package:music_player/palette/palette.dart';
 
 class PlaylistTabBodyIDkMan extends StatelessWidget {
   const PlaylistTabBodyIDkMan({Key? key}) : super(key: key);
@@ -10,6 +11,9 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
     return Column(
       children: [
         PlaylistWidget(
+          boxThingy: Container(
+            color: Palette.purpleBg,
+          ),
           playlist: Playlist(
             id: 12,
             name: "hi",
@@ -23,23 +27,26 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
 
 class PlaylistWidget extends StatelessWidget {
   final Playlist playlist;
-  const PlaylistWidget({Key? key, required this.playlist}) : super(key: key);
+  final Widget boxThingy;
+  const PlaylistWidget(
+      {Key? key, required this.playlist, required this.boxThingy})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: constants.libraryConstnats.padding - 5.0,
-        horizontal: constants.libraryConstnats.padding,
+      padding: const EdgeInsets.symmetric(
+        vertical: LibraryScreenConstnats.padding - 5.0,
+        horizontal: LibraryScreenConstnats.padding,
       ),
       child: Row(
         children: [
-          const Placeholder(
-            fallbackHeight: 50,
-            fallbackWidth: 50,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: boxThingy,
           ),
-          SizedBox(
-            width: constants.libraryConstnats.playlistPadding,
+          const SizedBox(
+            width: LibraryScreenConstnats.playlistPadding,
           ),
           Text(playlist.name)
         ],
