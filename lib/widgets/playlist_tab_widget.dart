@@ -27,6 +27,7 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
             id: 12,
             name: "Create Playlist",
             songs: [],
+            dateCreated: DateTime.now(),
           ),
         )
       ],

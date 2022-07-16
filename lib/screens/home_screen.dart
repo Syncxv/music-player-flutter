@@ -95,18 +95,20 @@ class HomeScreen extends StatelessWidget {
                 const HeaderThingy(title: "Recently Played"),
                 RecentlyPlayedList(songs: [
                   Song(
+                    id: 2,
                     album: "idk",
                     artist: "heh",
                     comment: "none",
                     title: "hehehe",
-                    year: 1999,
+                    dateCreated: DateTime.now(),
                   ),
                   Song(
+                    id: 1,
                     album: "bruh moment",
                     artist: "hidude",
                     comment: "none",
                     title: "a nice song",
-                    year: 1999,
+                    dateCreated: DateTime.now(),
                   )
                 ]),
               ],

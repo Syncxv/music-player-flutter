@@ -1,4 +1,6 @@
-class Constants {}
+class Constants {
+  static const String playlistKey = "playlists";
+}
 
 class LibraryScreenConstnats {
   static const double padding = 20.0;
