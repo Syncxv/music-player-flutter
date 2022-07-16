@@ -32,9 +32,9 @@ class Playlist {
         'dateCreated': playlist.dateCreated.toString(),
       };
 
-  static String encode(List<Playlist> songs) {
-    var listy = songs
-        .map<Map<String, dynamic>>((todo) => Playlist.toMap(todo))
+  static String encode(List<Playlist> playlists) {
+    var listy = playlists
+        .map<Map<String, dynamic>>((playlist) => Playlist.toMap(playlist))
         .toList();
     print(listy);
     return json.encode(listy);

@@ -5,11 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<List<Playlist>> getAllPlaylists() async {
   //TODO: DO IT WIGGA
   final prefs = await SharedPreferences.getInstance();
-  final wigga = await prefs.getString(Constants.playlistKey);
-  if (wigga == null) {
-    print("woah something went wrong please look at me");
-    return [];
-  }
+  final playlistsString = prefs.getString(Constants.playlistKey) ?? "[]";
+  return Playlist.decode(playlistsString);
+}
 
-  return [];
+void insertPlaylist(Playlist playlist) async {
+  final prefs = await SharedPreferences.getInstance();
+  final playlistsString = prefs.getString(Constants.playlistKey) ?? "[]";
+  final playlists = Playlist.decode(playlistsString);
+  playlists.add(playlist);
+  final value = Playlist.encode(playlists);
+  prefs.setString(Constants.playlistKey, value);
 }
