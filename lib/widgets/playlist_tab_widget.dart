@@ -11,11 +11,20 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final playlists = getAllPlaylists();
-    print(playlists);
+    playlists.then((bruh) {
+      if (bruh.isNotEmpty) {
+        print(
+          "NAME: ${bruh[0].name}",
+        );
+      } else {
+        print("bruh its empty");
+      }
+    });
     return Column(
       children: [
         PlaylistWidget(
           onTap: () {
+            print("Creating playlist");
             insertPlaylist(
               Playlist(
                   dateCreated: DateTime.now(),
@@ -62,7 +71,7 @@ class PlaylistWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => onTap(),
       child: Container(
         padding: const EdgeInsets.symmetric(
           vertical: LibraryScreenConstnats.padding - 5.0,

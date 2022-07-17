@@ -33,9 +33,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 200),
     );
 
-    _controllerA.addListener(() {
-      print(_controllerA.value);
-    });
+    // _controllerA.addListener(() {
+    //   print(_controllerA.value);
+    // });
     super.initState();
   }
 
