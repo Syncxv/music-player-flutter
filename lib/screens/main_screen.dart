@@ -25,7 +25,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _screens.add(HomeScreen(onClick: onClick));
+    _screens.add(HomeScreen(
+      onClick: onClick,
+      setScreen: setScreen,
+    ));
     _screens.add(TestWdiget(onClick: onClick));
     _screens.add(LibraryScreen(onClick: onClick));
     _controllerA = AnimationController(
@@ -55,11 +58,13 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     }
   }
 
-  void setScreen(int index) {
+  void setScreen(int index, bool bruh) {
     print("$index ${_screens.length}");
     if (index > _screens.length) return;
     setState(() => _selectedIndex = index);
-    onClick();
+    if (bruh) {
+      onClick();
+    }
   }
 
   Widget getCurrentScreen() =>

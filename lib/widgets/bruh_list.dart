@@ -109,7 +109,9 @@ class PlaylistsContainer extends StatelessWidget {
 
 class HeaderThingy extends StatelessWidget {
   final String title;
-  const HeaderThingy({Key? key, required this.title}) : super(key: key);
+  final Function onTap;
+  const HeaderThingy({Key? key, required this.title, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +127,15 @@ class HeaderThingy extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Text(
-            "See More",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w300,
-              color: Colors.grey[700],
+          GestureDetector(
+            onTap: () => onTap(),
+            child: Text(
+              "See More",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: Colors.grey[700],
+              ),
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/constants/index.dart';
 import 'package:music_player/models/models.dart';
 import 'package:music_player/widgets/bruh_list.dart';
 import 'package:music_player/widgets/recently_played.dart';
@@ -6,7 +7,9 @@ import 'package:music_player/widgets/top_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   final Function onClick;
-  const HomeScreen({Key? key, required this.onClick}) : super(key: key);
+  final Function setScreen;
+  const HomeScreen({Key? key, required this.onClick, required this.setScreen})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +80,12 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const HeaderThingy(title: "Playlists"),
+                HeaderThingy(
+                  title: "Playlists",
+                  onTap: () {
+                    setScreen(Constants.screenIndexes.library, false);
+                  },
+                ),
                 PlaylistsContainer(
                   playlists: [
                     // Playlist(
@@ -92,7 +100,10 @@ class HomeScreen extends StatelessWidget {
                     // Playlist(name: "hi", id: 1, songs: []),
                   ],
                 ),
-                const HeaderThingy(title: "Recently Played"),
+                HeaderThingy(
+                  title: "Recently Played",
+                  onTap: () {},
+                ),
                 RecentlyPlayedList(songs: [
                   Song(
                     id: 2,

@@ -1,5 +1,12 @@
+class ScreenIndexes {
+  final home = 0;
+  final test = 1;
+  final library = 2;
+}
+
 class Constants {
   static const String playlistKey = "playlists";
+  static final ScreenIndexes screenIndexes = ScreenIndexes();
 }
 
 class LibraryScreenConstnats {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_player/palette/palette.dart';
 
 class NavBar extends StatelessWidget {
-  final Function(int) setScreen;
+  final Function setScreen;
   final int index;
   const NavBar({
     Key? key,
@@ -91,7 +91,7 @@ class NavBar extends StatelessWidget {
                 NavItem(
                   icon: Icons.home,
                   text: "Home",
-                  onClick: () => setScreen(0),
+                  onClick: () => setScreen(0, true),
                   selected: index == 0,
                 ),
                 const SizedBox(
@@ -100,7 +100,7 @@ class NavBar extends StatelessWidget {
                 NavItem(
                   icon: Icons.add_road,
                   text: "Test",
-                  onClick: () => setScreen(1),
+                  onClick: () => setScreen(1, true),
                   selected: index == 1,
                 ),
                 const SizedBox(
@@ -109,7 +109,7 @@ class NavBar extends StatelessWidget {
                 NavItem(
                   icon: Icons.library_books,
                   text: "Library",
-                  onClick: () => setScreen(2),
+                  onClick: () => setScreen(2, true),
                   selected: index == 2,
                 ),
               ],
