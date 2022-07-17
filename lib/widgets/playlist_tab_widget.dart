@@ -10,17 +10,8 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final playlists = getAllPlaylists();
-    playlists.then((bruh) {
-      if (bruh.isNotEmpty) {
-        print(
-          "NAME: ${bruh[0].name}",
-        );
-      } else {
-        print("bruh its empty");
-      }
-    });
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         PlaylistWidget(
           onTap: () {
@@ -34,9 +25,9 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
             );
           },
           boxThingy: Container(
-            color: Palette.purpleBg,
-            height: 55,
-            width: 55,
+            color: Palette.purplePlaylistBg,
+            height: LibraryScreenConstnats.playlistPicutreSize,
+            width: LibraryScreenConstnats.playlistPicutreSize,
             child: const Center(
               child: Icon(
                 Icons.add,
@@ -46,12 +37,35 @@ class PlaylistTabBodyIDkMan extends StatelessWidget {
             ),
           ),
           playlist: Playlist(
-            id: 12,
+            id: -1,
             name: "Create Playlist",
             songs: [],
             dateCreated: DateTime.now(),
           ),
-        )
+        ),
+        FutureBuilder(
+          future: getAllPlaylists(),
+          builder: (context, AsyncSnapshot<List<Playlist>> snapshot) {
+            final bruh = snapshot.data?.map((playlist) {
+              return PlaylistWidget(
+                playlist: playlist,
+                boxThingy: PlaylistImage(
+                  image: playlist.image,
+                ),
+                onTap: () {
+                  print("cool playlist $playlist");
+                },
+              );
+            }).toList();
+            if (bruh == null) {
+              return const Text("create a playlist bruh");
+            }
+
+            return Column(
+              children: bruh,
+            );
+          },
+        ),
       ],
     );
   }
@@ -73,6 +87,7 @@ class PlaylistWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.symmetric(
           vertical: LibraryScreenConstnats.padding - 5.0,
           horizontal: LibraryScreenConstnats.padding,
@@ -97,6 +112,28 @@ class PlaylistWidget extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class PlaylistImage extends StatelessWidget {
+  final String? image;
+  const PlaylistImage({Key? key, this.image}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: LibraryScreenConstnats.playlistPicutreSize,
+      width: LibraryScreenConstnats.playlistPicutreSize,
+      child: image != null
+          ? Image.network(image!)
+          : Container(
+              color: Palette.purplePlaylistBg,
+              child: const Icon(
+                Icons.music_note,
+                color: Colors.white,
+              ),
+            ),
     );
   }
 }
