@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/constants/index.dart';
 import 'package:music_player/models/models.dart';
+import 'package:music_player/services/playlist.dart';
 import 'package:music_player/widgets/bruh_list.dart';
 import 'package:music_player/widgets/recently_played.dart';
 import 'package:music_player/widgets/top_bar.dart';
@@ -86,19 +87,13 @@ class HomeScreen extends StatelessWidget {
                     setScreen(Constants.screenIndexes.library, false);
                   },
                 ),
-                PlaylistsContainer(
-                  playlists: [
-                    // Playlist(
-                    //     name: "hi",
-                    //     id: 1,
-                    //     image: "assets/images/hi.png",
-                    //     songs: []),
-                    // Playlist(name: "hi", id: 1, songs: []),
-                    // Playlist(name: "hi", id: 1, songs: []),
-                    // Playlist(name: "hi", id: 1, songs: []),
-                    // Playlist(name: "hi", id: 1, songs: []),
-                    // Playlist(name: "hi", id: 1, songs: []),
-                  ],
+                FutureBuilder(
+                  future: getAllPlaylists(),
+                  builder: (context, AsyncSnapshot<List<Playlist>> snapshot) {
+                    return PlaylistsContainer(
+                      playlists: snapshot.data ?? [],
+                    );
+                  },
                 ),
                 HeaderThingy(
                   title: "Recently Played",
