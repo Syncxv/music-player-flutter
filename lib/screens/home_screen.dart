@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: Container(
             constraints: const BoxConstraints(
-              minHeight: 600,
+              minHeight: 1000,
               maxHeight: double.infinity,
             ),
             padding: const EdgeInsets.only(top: 20),

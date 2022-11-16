@@ -73,49 +73,52 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     print("$_isOpened $scale");
-    return Stack(
-      children: [
-        NavBar(setScreen: setScreen, index: _selectedIndex),
-        AnimatedBuilder(
-          animation: _controllerA,
-          builder: (BuildContext context, _) {
-            return Transform.translate(
-              offset: Offset(
-                220.0 *
-                    _controllerA
-                        .drive(
-                          CurveTween(curve: Curves.easeInOut),
-                        )
-                        .value,
-                0,
-              ),
-              child: Transform.scale(
-                scale: weirdClamp(
-                  _controllerA
-                      .drive(
-                        CurveTween(curve: Curves.easeInOut),
-                      )
-                      .value,
-                  1,
-                  0.9,
-                ),
-                child: Transform.rotate(
-                  angle: -0.15 *
+    return GestureDetector(
+      onHorizontalDragUpdate: (details) => print("nigga what $details"),
+      child: Stack(
+        children: [
+          NavBar(setScreen: setScreen, index: _selectedIndex),
+          AnimatedBuilder(
+            animation: _controllerA,
+            builder: (BuildContext context, _) {
+              return Transform.translate(
+                offset: Offset(
+                  220.0 *
                       _controllerA
                           .drive(
                             CurveTween(curve: Curves.easeInOut),
                           )
                           .value,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18.0),
-                    child: getCurrentScreen(),
+                  0,
+                ),
+                child: Transform.scale(
+                  scale: weirdClamp(
+                    _controllerA
+                        .drive(
+                          CurveTween(curve: Curves.easeInOut),
+                        )
+                        .value,
+                    1,
+                    0.9,
+                  ),
+                  child: Transform.rotate(
+                    angle: -0.15 *
+                        _controllerA
+                            .drive(
+                              CurveTween(curve: Curves.easeInOut),
+                            )
+                            .value,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(18.0),
+                      child: getCurrentScreen(),
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
-        )
-      ],
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 }
